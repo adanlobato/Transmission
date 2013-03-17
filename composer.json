@@ -1,0 +1,19 @@
+{
+    "name": "adanlobato/transmission",
+    "description": "Transmission RPC client written in PHP",
+    "require": {
+        "kriswallsmith/buzz": "0.9"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adán Lobato",
+            "email": "adan.lobato@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "adanlobato\\Transmission": "src/"
+        }
+    }
+}
