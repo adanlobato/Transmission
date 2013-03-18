@@ -24,7 +24,7 @@ $buzz = new Buzz(new Curl());
 $transmission = new Transmission($buzz);
 
 // Get session stats
-$stats = $transmission->sstats();
+$stats = $transmission->session()->getStats();
 ```
 
 ### Connect to a remote Transmission
@@ -34,7 +34,6 @@ You can connect easily by providing RPC's url.
 
 ```php
 <?php
-
 // ...
 
 $buzz = new Buzz(new Curl());
@@ -50,7 +49,6 @@ be easily solved by registering a listener on ```Buzz```.
 
 ```php
 <?php
-
 // ...
 use Buzz\Listener\BasicAuthListener;
 

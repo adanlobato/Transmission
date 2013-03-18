@@ -135,7 +135,7 @@ class Transmission
             }
             if (empty($value)) unset($array[$index]);
         }
-        
+
         // Return array cast to object
         return $return_as_array ? $array : (object)$array;
     }
