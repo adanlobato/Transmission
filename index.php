@@ -17,30 +17,30 @@ $buzz->addListener(new BasicAuthListener('test', 'testtest'));
 $transmission = new Transmission($buzz);
 
 try {
-    $result = $transmission->sstats();
+    $result = $transmission->session()->getStats();
     print "GET SESSION STATS... [{$result->result}]\n";
 
     sleep(2);
 
-    $result = $transmission->add($test_torrent, '/tmp');
+    $result = $transmission->torrent()->add($test_torrent, '/tmp');
     $id = $result->arguments->torrent_added->id;
     print "ADD TORRENT TEST... [{$result->result}] (id=$id)\n";
 
     sleep(2);
 
-    $result = $transmission->set($id, array('uploadLimit' => 10));
+    $result = $transmission->torrent()->set($id, array('uploadLimit' => 10));
     print "SET TORRENT INFO TEST... [{$result->result}]\n";
 
     sleep(2);
 
     $transmission->setReturnAsArray(true);
-    $result = $transmission->get($id, array('uploadLimit'));
+    $result = $transmission->torrent()->get($id, array('uploadLimit'));
     print "GET TORRENT INFO AS ARRAY TEST... [{$result['result']}]\n";
     $transmission->setReturnAsArray(false);
 
     sleep(2);
 
-    $result = $transmission->get($id, array('uploadLimit'));
+    $result = $transmission->torrent()->get($id, array('uploadLimit'));
     print "GET TORRENT INFO AS OBJECT TEST... [{$result->result}]\n";
 
     sleep(2);
@@ -48,33 +48,33 @@ try {
     $result2 = $result->arguments->torrents[0]->uploadLimit == 10 ? 'success' : 'failed';
     print "VERIFY TORRENT INFO SET/GET... [{$result2}] (" . $result->arguments->torrents[0]->uploadLimit . ")\n";
 
-    $result = $transmission->stop($id);
+    $result = $transmission->torrent()->stop($id);
     print "STOP TORRENT TEST... [{$result->result}]\n";
     sleep(2);
 
-    $result = $transmission->verify($id);
+    $result = $transmission->torrent()->verify($id);
     print "VERIFY TORRENT TEST... [{$result->result}]\n";
 
     sleep(10);
 
-    $result = $transmission->start($id);
+    $result = $transmission->torrent()->start($id);
     print "START TORRENT TEST... [{$result->result}]\n";
 
     sleep(2);
 
-    $result = $transmission->reannounce($id);
+    $result = $transmission->torrent()->reannounce($id);
     print "REANNOUNCE TORRENT TEST... [{$result->result}]\n";
 
     sleep(2);
 
-    $result = $transmission->move($id, '/tmp/torrent-test', true);
+    $result = $transmission->torrent()->move($id, '/tmp/torrent-test', true);
     print "MOVE TORRENT TEST... [{$result->result}]\n";
 
     sleep(2);
 
-    $result = $transmission->remove($id, false);
+    $result = $transmission->torrent()->remove($id, false);
     print "REMOVE TORRENT TEST... [{$result->result}]\n";
 
-} catch (Exception $e) {
+} catch (\Exception $e) {
     die('[ERROR] ' . $e->getMessage() . PHP_EOL);
 }
