@@ -15,5 +15,8 @@
         "psr-0": {
             "adanlobato\\Transmission": "src/"
         }
+    },
+    "extra":{
+        "branch-alias": { "dev-master": "1.0-dev" }
     }
 }
